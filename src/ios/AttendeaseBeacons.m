@@ -20,7 +20,12 @@ static char launchNotificationKey;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
-
+    
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
     self.beacons = [[NSMutableDictionary alloc] init];
 
     self.beaconNotifications = [[NSMutableDictionary alloc] init];
@@ -231,7 +236,7 @@ static char launchNotificationKey;
 
             NSDate *previousTime = [self.beaconNotifications objectForKey:identifier];
 
-            BOOL notify = YES;
+            BOOL notify = NO;
 
             if (previousTime != NULL)
             {
