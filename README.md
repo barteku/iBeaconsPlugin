@@ -6,7 +6,8 @@ This plugin enables iBeacon discovery for your Cordova (Phonegap) application.
 
 Only devices that support Bluetooth 4 (Bluetooth LE, Bluetooth Smart) are supported.
 
-* iOS 7+
+* iOS 8 - fix for permissions
+* iOS 7
 * Android 4.3+ (Work in progress...)
 
 ### General TODO:
